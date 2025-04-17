@@ -3,36 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Category - Veg Pizzas</title>
+  <title>Domino's - Veg Pizzas</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 text-gray-800">
-  <header class="bg-metallic-seaweed p-4 text-white text-center text-2xl font-bold">
-    🍕 Domino's - Veg Pizzas
+
+  <!-- Header -->
+  <header class="bg-red-600 p-4 text-white text-center text-2xl font-bold">
+    🍕 Domino's - Veg & Non-Veg Pizzas
   </header>
 
-  <main class="p-4">
-    <h2 class="text-xl font-semibold mb-4">Veg Pizzas</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <!-- Filter + Search + Cart -->
+  <section class="flex flex-col md:flex-row justify-between items-center px-4 py-3 bg-white border-b gap-4">
+    <div class="flex flex-wrap gap-2">
+      <button id="allBtn" class="filter-btn bg-gray-300 px-3 py-1 rounded-lg" onclick="filterPizzas('all')">All</button>
+      <button id="vegBtn" class="filter-btn bg-green-200 px-3 py-1 rounded-lg" onclick="filterPizzas('veg')">Veg</button>
+      <button id="nonVegBtn" class="filter-btn bg-red-200 px-3 py-1 rounded-lg" onclick="filterPizzas('non-veg')">Non-Veg</button>
+    </div>
 
-      <div class="bg-white rounded-2xl shadow-lg p-4">
-        <img src="D:\23501A4247\gfg training day-2\FSD\Domino's_pizza_logo.svg\1cc3b474-cc7b-435b-9da3-bac839a62b6c_PIZ0180.jpg" alt="Pizza" class="rounded-xl mb-2" />
+    <input type="text" id="searchInput" oninput="searchPizzas()" placeholder="Search pizzas..." class="w-full md:w-1/2 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+
+    <div class="flex items-center gap-2 text-sm">
+      <span class="font-medium">🛒 Cart:</span>
+      <span id="cartCount" class="bg-blue-500 text-white px-2 py-1 rounded-full">0</span>
+    </div>
+  </section>
+
+  <!-- Pizza Cards -->
+  <main class="p-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Pizza Card 1 - Veg -->
+      <div class="pizza-card bg-white rounded-2xl shadow-lg p-4" data-type="veg">
+        <img src="" alt="Veggie Supreme" class="rounded-xl mb-2 w-full h-48 object-cover" />
         <h3 class="text-lg font-bold" style="color: #3b9f9f">Veggie Supreme</h3>
         <p class="text-sm text-gray-600">Mushrooms, olives, corn, and more!</p>
-        <p class="mt-2 font-semibold" style="color: crimson">Rs.299</p>
-        <button onclick="addToCart('Veggie Supreme', 299, 'btn1')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491]">Add to Cart</button>
+        <p class="mt-2 font-semibold text-crimson">Rs.299</p>
+        <button id="btn1" onclick="addToCart('Veggie Supreme', 299, 'btn1')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491]">Add to Cart</button>
+      </div>
+
+      <!-- Pizza Card 2 - Non-Veg -->
+      <div class="pizza-card bg-white rounded-2xl shadow-lg p-4" data-type="non-veg">
+        <img src="" alt="Chicken Dominator" class="rounded-xl mb-2 w-full h-48 object-cover" />
+        <h3 class="text-lg font-bold" style="color: #3b9f9f">Chicken Dominator</h3>
+        <p class="text-sm text-gray-600">Loaded with Chicken Pepperoni, BBQ Chicken, and more</p>
+        <p class="mt-2 font-semibold text-crimson">Rs.399</p>
+        <button id="btn2" onclick="addToCart('Chicken Dominator', 399, 'btn2')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491]">Add to Cart</button>
+      </div>
+
+      <!-- Add more pizza cards here by duplicating above -->
+      <div class="pizza-card bg-white rounded-2xl shadow-lg p-4" data-type="veg">
+        <img src="9d5ece52-5760-4aa8-98e6-65b9b08e1b48_PIZ0179.jpg" alt="Peppy Paneer pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
+        <h3 class="text-lg font-bold" style="color: #3b9f9f">Peppy Paneer</h3>
+        <p class="text-sm text-gray-600">Juicy paneer, capsicum & red paprika.</p>
+        <p class="mt-2 font-semibold" style="color: crimson">Rs.259</p>
+        <button id="addToCartBtn1" onclick="addToCart('Peppy Paneer', 259, 'addToCartBtn1')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+      </div>
+    
+      <div class="pizza-card bg-white rounded-2xl shadow-lg p-4" data-type="veg">
+        <img src="baeb0175-ee81-4bbd-b8cb-7ec6f8ac6413_PIZ0172.jpg" alt="Margherita pizza" class="rounded-xl mb-2" />
+        <h3 class="text-lg font-bold" style="color: #3b9f9f">Margherita</h3>
+        <p class="text-sm text-gray-600">100% real mozzarella cheese.</p>
+        <p class="mt-2 font-semibold" style="color: crimson">Rs.109</p>
+        <button id="addToCartBtn2" onclick="addToCart('Margherita', 109, 'addToCartBtn2')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+      </div>
+    
+      <div class="pizza-card bg-white rounded-2xl shadow-lg p-4" data-type="veg">
+        <img src="1cc3b474-cc7b-435b-9da3-bac839a62b6c_PIZ0180.jpg" alt="Veggie Paradise pizza" class="rounded-xl mb-2" />
+        <h3 class="text-lg font-bold" style="color: #3b9f9f">Veggie Paradise</h3>
+        <p class="text-sm text-gray-600">Golden corn, olives, capsicum, paprika.</p>
+        <p class="mt-2 font-semibold" style="color: crimson">Rs.259</p>
+        <button id="addToCartBtn3" onclick="addToCart('Veggie Paradise', 259, 'addToCartBtn3')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
       </div>
       
+      <div class="pizza-card bg-white rounded-2xl shadow-lg p-4" data-type="non-veg">
+        <img src="D:\23501A4247\gfg training day-2\FSD\Domino's_pizza_logo.svg\aaf5d05f-59d3-4594-bb72-d55e3b43e2ea_FullsizeMargaritaCB.jpg" alt="Cheese Burst pizza" class="rounded-xl mb-2" />
+        <h3 class="text-lg font-bold" style="color: #3b9f9f">Cheese Burst</h3>
+        <p class="text-sm text-gray-600">Melted cheese inside the crust, extra cheese on top.</p>
+        <p class="mt-2 font-semibold" style="color: crimson">Rs.349</p>
+        <button id="addToCartBtn4" onclick="addToCart('Cheese Burst', 349, 'addToCartBtn4')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+      </div>
+      
+      <div class="pizza-card bg-white rounded-2xl shadow-lg p-4" data-type="non-veg">
+        <img src="bD:\23501A4247\gfg training day-2\FSD\Domino's_pizza_logo.svg\7a766c16-e00a-48ba-89fe-73493cca5df0_PMPepperBBQChickenHome.jpg" alt="BBQ Chicken pizza" class="rounded-xl mb-2" />
+        <h3 class="text-lg font-bold" style="color: #3b9f9f">BBQ Chicken</h3>
+        <p class="text-sm text-gray-600">Grilled chicken with smoky BBQ sauce.</p>
+        <p class="mt-2 font-semibold" style="color: crimson">Rs.399</p>
+        <button id="addToCartBtn5" onclick="addToCart('BBQ Chicken', 399, 'addToCartBtn5')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+      </div>
+     
+      <div class="pizza-card bg-white rounded-2xl shadow-lg p-4" data-type="non-veg">
+        <img src="D:\23501A4247\gfg training day-2\FSD\Domino's_pizza_logo.svg\baeb0175-ee81-4bbd-b8cb-7ec6f8ac6413_PIZ0172.jpg" alt="Pepperoni pizza" class="rounded-xl mb-2" />
+        <h3 class="text-lg font-bold" style="color: #3b9f9f">Pepperoni</h3>
+        <p class="text-sm text-gray-600">Spicy pepperoni slices and cheese.</p>
+        <p class="mt-2 font-semibold" style="color: crimson">Rs.349</p>
+        <button id="addToCartBtn6" onclick="addToCart('Pepperoni', 349, 'addToCartBtn6')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+      </div>
+
     </div>
   </main>
 
+  <!-- JS Script -->
   <script>
     function addToCart(pizzaName, price, buttonId) {
       const button = document.getElementById(buttonId);
       button.innerHTML = 'Adding...';
       button.disabled = true;
 
-      setTimeout(function() {
+      setTimeout(function () {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         cart.push({ name: pizzaName, price: price });
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -41,11 +119,53 @@
         button.classList.remove('bg-red-600');
         button.classList.add('bg-green-600');
 
-        setTimeout(function() {
+        updateCartCount();
+
+        setTimeout(function () {
           window.location.href = "cart.html";
         }, 1000);
       }, 1000);
     }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById("cartCount").innerText = cart.length;
+    }
+
+    function filterPizzas(type) {
+      const cards = document.querySelectorAll('.pizza-card');
+      const allBtns = document.querySelectorAll('.filter-btn');
+
+      allBtns.forEach(btn => btn.classList.remove('bg-gray-300', 'bg-green-200', 'bg-red-200'));
+      if (type === 'veg') document.getElementById('vegBtn').classList.add('bg-green-200');
+      else if (type === 'non-veg') document.getElementById('nonVegBtn').classList.add('bg-red-200');
+      else document.getElementById('allBtn').classList.add('bg-gray-300');
+
+      cards.forEach(card => {
+        const isMatch = type === 'all' || card.dataset.type === type;
+        card.classList.toggle('hidden', !isMatch);
+      });
+
+      searchPizzas(); // combine with search
+    }
+
+    function searchPizzas() {
+      const search = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll('.pizza-card');
+
+      cards.forEach(card => {
+        const title = card.querySelector("h3").innerText.toLowerCase();
+        const isVisible = !card.classList.contains("hidden");
+        const matches = title.includes(search);
+        card.classList.toggle('hidden', !(matches && isVisible));
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateCartCount();
+      filterPizzas('all');
+    });
   </script>
+
 </body>
 </html>
