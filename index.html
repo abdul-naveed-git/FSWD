@@ -21,12 +21,14 @@
     <a href="cart.html" class="text-white text-lg">
       <i class="fas fa-shopping-cart"></i> Cart
     </a>
-    <a href="login.html" class="text-white text-lg">
-      <i class="fas fa-right-to-bracket"></i> login
-    </a>
-    
   </header>
 
+
+  <div class="p-4 flex justify-center">
+    <input type="text" id="search" placeholder="Search pizzas..." class="border-2 border-gray-300 p-2 rounded-lg w-1/2" />
+  </div>
+
+ 
   <nav class="bg-white p-4 shadow-md">
     <div class="flex space-x-4 overflow-x-auto" id="What are you craving for">
       <h3>What are you craving for</h3>
@@ -103,48 +105,48 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
       <div class="bg-white rounded-2xl shadow-lg p-4" id="veg">
-        <img src="9d5ece52-5760-4aa8-98e6-65b9b08e1b48_PIZ0179.jpg" alt="Peppy Paneer pizza" class="rounded-xl mb-2" />
-        <h3 class="text-lg font-bold" style="color: #3b9f9f">Peppy Paneer</h3>
+        <img src="9d5ece52-5760-4aa8-98e6-65b9b08e1b48_PIZ0179.jpg" alt="Peppy Paneer pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
+        <h3 class="text-lg font-bold" style="color: #0b648f">Peppy Paneer</h3>
         <p class="text-sm text-gray-600">Juicy paneer, capsicum & red paprika.</p>
         <p class="mt-2 font-semibold" style="color: crimson">Rs.259</p>
         <button id="addToCartBtn1" onclick="addToCart('Peppy Paneer', 259, 'addToCartBtn1')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
       </div>
     
       <div class="bg-white rounded-2xl shadow-lg p-4" id="veg">
-        <img src="baeb0175-ee81-4bbd-b8cb-7ec6f8ac6413_PIZ0172.jpg" alt="Margherita pizza" class="rounded-xl mb-2" />
-        <h3 class="text-lg font-bold" style="color: #3b9f9f">Margherita</h3>
+        <img src="baeb0175-ee81-4bbd-b8cb-7ec6f8ac6413_PIZ0172.jpg" alt="Margherita pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
+        <h3 class="text-lg font-bold" style="color: #0b648f">Margherita</h3>
         <p class="text-sm text-gray-600">100% real mozzarella cheese.</p>
         <p class="mt-2 font-semibold" style="color: crimson">Rs.109</p>
         <button id="addToCartBtn2" onclick="addToCart('Margherita', 109, 'addToCartBtn2')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
       </div>
     
       <div class="bg-white rounded-2xl shadow-lg p-4" id="veg">
-        <img src="1cc3b474-cc7b-435b-9da3-bac839a62b6c_PIZ0180.jpg" alt="Veggie Paradise pizza" class="rounded-xl mb-2" />
-        <h3 class="text-lg font-bold" style="color: #3b9f9f">Veggie Paradise</h3>
+        <img src="1cc3b474-cc7b-435b-9da3-bac839a62b6c_PIZ0180.jpg" alt="Veggie Paradise pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
+        <h3 class="text-lg font-bold" style="color: #0b648f">Veggie Paradise</h3>
         <p class="text-sm text-gray-600">Golden corn, olives, capsicum, paprika.</p>
         <p class="mt-2 font-semibold" style="color: crimson">Rs.259</p>
         <button id="addToCartBtn3" onclick="addToCart('Veggie Paradise', 259, 'addToCartBtn3')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
       </div>
       
       <div class="bg-white rounded-2xl shadow-lg p-4" id="non-veg">
-        <img src="D:\23501A4247\gfg training day-2\FSD\Domino's_pizza_logo.svg\aaf5d05f-59d3-4594-bb72-d55e3b43e2ea_FullsizeMargaritaCB.jpg" alt="Cheese Burst pizza" class="rounded-xl mb-2" />
-        <h3 class="text-lg font-bold" style="color: #3b9f9f">Cheese Burst</h3>
+        <img src="D:\23501A4247\gfg training day-2\FSD\Domino's_pizza_logo.svg\aaf5d05f-59d3-4594-bb72-d55e3b43e2ea_FullsizeMargaritaCB.jpg" alt="Cheese Burst pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
+        <h3 class="text-lg font-bold" style="color: #0b648f">Cheese Burst</h3>
         <p class="text-sm text-gray-600">Melted cheese inside the crust, extra cheese on top.</p>
         <p class="mt-2 font-semibold" style="color: crimson">Rs.349</p>
         <button id="addToCartBtn4" onclick="addToCart('Cheese Burst', 349, 'addToCartBtn4')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
       </div>
       
       <div class="bg-white rounded-2xl shadow-lg p-4" id="non-veg">
-        <img src="bD:\23501A4247\gfg training day-2\FSD\Domino's_pizza_logo.svg\7a766c16-e00a-48ba-89fe-73493cca5df0_PMPepperBBQChickenHome.jpg" alt="BBQ Chicken pizza" class="rounded-xl mb-2" />
-        <h3 class="text-lg font-bold" style="color: #3b9f9f">BBQ Chicken</h3>
+        <img src="bD:\23501A4247\gfg training day-2\FSD\Domino's_pizza_logo.svg\7a766c16-e00a-48ba-89fe-73493cca5df0_PMPepperBBQChickenHome.jpg" alt="BBQ Chicken pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
+        <h3 class="text-lg font-bold" style="color: #0b648f">BBQ Chicken</h3>
         <p class="text-sm text-gray-600">Grilled chicken with smoky BBQ sauce.</p>
         <p class="mt-2 font-semibold" style="color: crimson">Rs.399</p>
         <button id="addToCartBtn5" onclick="addToCart('BBQ Chicken', 399, 'addToCartBtn5')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
       </div>
      
       <div class="bg-white rounded-2xl shadow-lg p-4" id="non-veg">
-        <img src="D:\23501A4247\gfg training day-2\FSD\Domino's_pizza_logo.svg\baeb0175-ee81-4bbd-b8cb-7ec6f8ac6413_PIZ0172.jpg" alt="Pepperoni pizza" class="rounded-xl mb-2" />
-        <h3 class="text-lg font-bold" style="color: #3b9f9f">Pepperoni</h3>
+        <img src="D:\23501A4247\gfg training day-2\FSD\Domino's_pizza_logo.svg\baeb0175-ee81-4bbd-b8cb-7ec6f8ac6413_PIZ0172.jpg" alt="Pepperoni pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
+        <h3 class="text-lg font-bold" style="color: #0b648f">Pepperoni</h3>
         <p class="text-sm text-gray-600">Spicy pepperoni slices and cheese.</p>
         <p class="mt-2 font-semibold" style="color: crimson">Rs.349</p>
         <button id="addToCartBtn6" onclick="addToCart('Pepperoni', 349, 'addToCartBtn6')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
