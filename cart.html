@@ -2,30 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cart - DomClone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopping Cart - DomClone</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    .bg-metallic-seaweed {
+      background-color: #0b648f;
+    }
+    .text-crimson {
+      color: crimson;
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <header class="bg-red-600 p-4 text-white text-center text-2xl font-bold">
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-metallic-seaweed p-4 text-white text-2xl font-bold text-center">
     🛒 Your Cart
   </header>
 
-  <main class="p-6">
-    <div class="bg-white p-4 rounded-2xl shadow-md max-w-lg mx-auto">
-      <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
-      <ul class="text-gray-700 mb-4">
-        <li class="flex justify-between py-2 border-b"><span></span><span></span></li>
-      </ul>
-      <div class="flex justify-between font-bold mb-4">
-        <span>Total</span>
-        <span>Rs.259</span>
-      </div>
-      <button onclick="placeOrder()" class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full">Place Order</button>
+  <main class="p-6 max-w-3xl mx-auto">
+    <div id="cartItems" class="space-y-4"></div>
+    <div class="mt-6 text-right">
+      <h2 class="text-xl font-semibold">Total: <span id="totalPrice" class="text-crimson">Rs.0</span></h2>
+      <button id="clearCartBtn" class="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">Clear Cart</button>
     </div>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItemsContainer = document.getElementById('cartItems');
+      const totalPriceElement = document.getElementById('totalPrice');
+      cartItemsContainer.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="text-center text-lg">Your cart is empty 🍕</p>';
+        totalPriceElement.textContent = 'Rs.0';
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'bg-white p-4 rounded-lg shadow flex justify-between items-center';
+
+        itemDiv.innerHTML = `
+          <div>
+            <h3 class="text-lg font-semibold">${item.name}</h3>
+            <p class="text-crimson">Rs.${item.price}</p>
+          </div>
+          <button onclick="removeItem(${index})" class="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded">Remove</button>
+        `;
+
+        cartItemsContainer.appendChild(itemDiv);
+      });
+
+      totalPriceElement.textContent = `Rs.${total}`;
+    }
+
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    document.getElementById('clearCartBtn').addEventListener('click', () => {
+      localStorage.removeItem('cart');
+      renderCart();
+    });
+
+    window.onload = renderCart;
+  </script>
 </body>
 </html>
