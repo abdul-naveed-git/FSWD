@@ -13,37 +13,50 @@
     .bg-metallic-seaweed {
       background-color: #3b9f9f;
     }
-    #toggleBtn {
-  margin: 15px;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-}
+    #openBtn {
+      font-size: 22px;
+      padding: 12px 20px;
+      cursor: pointer;
+      background-color: #333;
+      color: white;
+      border: none;
+      margin: 15px;
+    }
 
-.sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.3s;
-  padding-top: 60px;
-}
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: rgba(0,0,0,0.95);
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
 
-.sidebar a {
-  padding: 10px 20px;
-  text-decoration: none;
-  font-size: 20px;
-  color: white;
-  display: block;
-  transition: 0.2s;
-}
+    .sidebar a {
+      padding: 10px 30px;
+      text-decoration: none;
+      font-size: 25px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
 
-.sidebar a:hover {
-  background-color: #575757;
-}
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+    .sidebar .closeBtn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -52,18 +65,16 @@
     <a href="cart.html" class="text-white text-lg">
       <i class="fas fa-shopping-cart"></i> Cart
     </a>
-      <button id="toggleBtn">☰ Menu</button>
-    <div id="sidebar" calss="sidebar">
-     <a href="login.html" class="text-white text-lg">
-      <i class="fas fa-user-circle"></i> login
-    </a>
+      <button id="openBtn">☰Menu</button>    
+  </header>
+    <div id="mySidebar" class="sidebar">
+    <span class="closeBtn" id="closeBtn">&times;</span>
     <a href="#">Home</a>
     <a href="#">About</a>
     <a href="#">Services</a>
     <a href="#">Contact</a>
+    <a href="login.html">login</a>
   </div>
-    
-  </header>
 
   <nav class="bg-white p-4 shadow-md">
     <div class="flex space-x-4 overflow-x-auto" id="What are you craving for">
@@ -210,19 +221,17 @@
         }, 1000);
       }, 1000);
     }
-    const toggleBtn = document.getElementById('toggleBtn');
-    const sidebar = document.getElementById('sidebar');
+    const openBtn = document.getElementById('openBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const sidebar = document.getElementById('mySidebar');
 
-    let isOpen = false;
+    openBtn.addEventListener('click', () => {
+      sidebar.style.width = '250px';
+    });
 
-   toggleBtn.addEventListener('click', () => {
-    if (isOpen) {
-    sidebar.style.width = '0';
-  } else {
-    sidebar.style.width = '250px';
-  }
-  isOpen = !isOpen;
-});
+    closeBtn.addEventListener('click', () => {
+      sidebar.style.width = '0';
+    });
   </script>
 </body>
 </html>
