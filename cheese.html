@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cheese Volcano</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .filters {
+      display: flex;
+      gap: 10px;
+    }
+    .filters button {
+      padding: 8px 12px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .filters button.active {
+      background-color: #e0e0e0;
+    }
+    .navbar {
+      display: flex;
+      overflow-x: auto;
+      background: #fff;
+      padding: 10px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      white-space: nowrap;
+    }
+    .navbar a button {
+      margin: 0 8px;
+      padding: 8px 14px;
+      background-color: #f3f3f3;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .navbar a button:hover {
+      background-color: #ddd;
+    }
+    .main-content {
+      padding: 30px 20px;
+    }
+    .pizza-card {
+      display: inline-block;
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 10px;
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      vertical-align: top;
+    }
+    .pizza-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .pizza-info {
+      padding: 10px;
+    }
+    .pizza-info h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .pizza-info p {
+      font-size: 14px;
+      color: #555;
+    }
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+      color: green;
+      margin-top: 8px;
+    }
+    .add-to-cart-btn {
+      margin-top: 10px;
+      background-color: crimson;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div><strong>Domino's Pizza</strong></div>
+    <div class="filters">
+      <button id="vegBtn">🥦 Veg Only</button>
+      <button id="nonVegBtn">🍗 Non Veg Only</button>
+      <button id="sortBtn">⇕️ Sort by Price</button>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <a href="bigpizza.html"><button>Big Big Pizza</button></a>
+    <a href="cheeseburst.html"><button>Cheese Burst pizza</button></a>
+    <a href="veg.html"><button>Veg Pizza</button></a>
+    <a href="nonveg.html"><button>Non-Veg Pizza</button></a>
+    <a href="cheese.html"><button>Cheese Volcano</button></a>
+    <a href="value.html"><button>Value Combos</button></a>
+    <a href="mania.html"><button>Pizza Mania</button></a>
+    <a href="garlic.html"><button>Garlic Breads & More</button></a>
+    <a href="beverages.html"><button>Beverages</button></a>
+    <a href="desserts.html"><button>Desserts</button></a>
+  </div>
+
+  <div class="main-content">
+    <h2>Cheese Volcano</h2>
+
+    <div class="pizza-card" data-type="veg" data-price="379">
+      <img src="https://www.dominos.co.in/files/items/cheese_volcano.jpg" alt="Cheese Volcano Pizza">
+      <div class="pizza-info">
+        <h3>Cheese Volcano</h3>
+        <p>Overflowing cheese bursting out of a volcano-shaped crust</p>
+        <div class="price">₹379</div>
+        <button class="add-to-cart-btn" onclick="addToCart('Cheese Volcano', 379)">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const vegBtn = document.getElementById('vegBtn');
+    const nonVegBtn = document.getElementById('nonVegBtn');
+    const sortBtn = document.getElementById('sortBtn');
+    const cards = document.querySelectorAll('.pizza-card');
+    let sortAsc = true;
+
+    vegBtn.addEventListener('click', () => {
+      cards.forEach(card => {
+        card.style.display = card.dataset.type === 'veg' ? 'inline-block' : 'none';
+      });
+    });
+
+    nonVegBtn.addEventListener('click', () => {
+      cards.forEach(card => {
+        card.style.display = card.dataset.type === 'nonveg' ? 'inline-block' : 'none';
+      });
+    });
+
+    sortBtn.addEventListener('click', () => {
+      const container = document.querySelector('.main-content');
+      const sorted = Array.from(cards).sort((a, b) => {
+        const priceA = parseInt(a.dataset.price);
+        const priceB = parseInt(b.dataset.price);
+        return sortAsc ? priceA - priceB : priceB - priceA;
+      });
+      sorted.forEach(card => container.appendChild(card));
+      sortAsc = !sortAsc;
+    });
+
+    function addToCart(name, price) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ name, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+  </script>
+
+</body>
+</html>
