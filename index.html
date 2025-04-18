@@ -3,238 +3,462 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pizza Order - DomClone</title>
+  <meta name="description" content="Order delicious Domino's pizza online">
+  <title>Pizza Order - Domino's Clone</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .text-crimson {
-      color: crimson;
-    }
-    .bg-metallic-seaweed {
-      background-color: #0b648f;
-    }
-    .bold-heading {
-  font-weight: bold;
-}
-    #openBtn {
-      font-size: 22px;
-      padding: 12px 20px;
-      cursor: pointer;
-      background-color: #333;
-      color: white;
-      border: none;
-      margin: 15px;
-    }
-
     .sidebar {
       height: 100%;
       width: 0;
       position: fixed;
-      z-index: 1;
+      z-index: 100;
       top: 0;
       left: 0;
       background-color: rgba(0,0,0,0.95);
       overflow-x: hidden;
-      transition: 0.5s;
+      transition: 0.3s;
       padding-top: 60px;
     }
 
     .sidebar a {
-      padding: 10px 30px;
+      padding: 12px 30px;
       text-decoration: none;
-      font-size: 25px;
+      font-size: 1.25rem;
       color: white;
       display: block;
-      transition: 0.3s;
+      transition: 0.2s;
     }
 
     .sidebar a:hover {
       background-color: #575757;
+      padding-left: 35px;
     }
 
     .sidebar .closeBtn {
       position: absolute;
       top: 15px;
       right: 25px;
-      font-size: 30px;
+      font-size: 2rem;
       color: white;
       cursor: pointer;
     }
+
+    .category-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .category-img:hover {
+      transform: scale(1.1);
+    }
+
+    .pizza-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .pizza-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .btn-primary {
+      background-color: #e63946;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #c1121f;
+      transform: translateY(-2px);
+    }
+
+    .btn-success {
+      background-color: #2a9d8f;
+    }
+
+    .cart-counter {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: #e63946;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Custom color scheme */
+    .bg-primary {
+      background-color: #0b648f;
+    }
+    .text-primary {
+      color: #0b648f;
+    }
+    .bg-accent {
+      background-color: #e63946;
+    }
+    .text-accent {
+      color: #e63946;
+    }
+    .bg-secondary {
+      background-color: #2a9d8f;
+    }
+    .text-secondary {
+      color: #2a9d8f;
+    }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <header class="bg-metallic-seaweed p-4 text-white text-center text-2xl font-bold flex justify-between items-center">
-    <h2>🍕 Domino's</h2>
-    <a href="cart.html" class="text-white text-lg">
-      <i class="fas fa-shopping-cart"></i> Cart
-    </a>
-      <button id="openBtn">☰Menu</button>    
-  </header>
-    <div id="mySidebar" class="sidebar">
-    <span class="closeBtn" id="closeBtn">&times;</span>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Contact</a>
-    <a href="login.html">login</a>
-  </div>
-
-  <nav class="bg-white p-4 shadow-md">
-    <div class="flex space-x-4 overflow-x-auto" id="What are you craving for">
-      <h3 class="bold-heading">What are you craving for?</h3>
-    <ul style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px; list-style: none;">
-  <li>
-    <a href="category.html">
-      <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/big%20pizza.jpg?raw=true" alt="Big Big Pizza"
-           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
-    </a>
-    <p style="text-align: center;">Big Big Pizza</p>
-  </li>
-  <li>
-    <a href="category.html">
-      <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/cheese%20burst%20top.jpeg?raw=true" alt="Cheese Burst Pizza"
-           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
-    </a>
-    <p style="text-align: center;">Cheese Burst Pizza</p>
-  </li>
-  <li>
-    <a href="category.html">
-      <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/veg%20pizza.jpg?raw=true" alt="Veg Pizza"
-           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
-    </a>
-    <p style="text-align: center;">Veg Pizza</p>
-  </li>
-  <li>
-    <a href="category.html">
-      <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/cheese%20volcano.jpg?raw=true" alt="Cheese Volcano"
-           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
-    </a>
-    <p style="text-align: center;">Cheese Volcano</p>
-  </li>
-  <li>
-    <a href="category.html">
-      <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/pizza%20maina.jpg?raw=true" alt="Pizza Mania"
-           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
-    </a>
-    <p style="text-align: center;">Pizza Mania</p>
-  </li>
-  <li>
-    <a href="category.html">
-      <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/value%20combos.jpg?raw=true" alt="Value Combos"
-           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
-    </a>
-    <p style="text-align: center;">Value Combos</p>
-  </li>
-  <li>
-    <a href="category.html">
-      <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/garlic%20bread.jpg?raw=true" alt="Garlic Breads & More"
-           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
-    </a>
-    <p style="text-align: center;">Garlic Breads & More</p>
-  </li>
-  <li>
-    <a href="category.html">
-      <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/coca%20cola.jpeg?raw=true" alt="Beverages"
-           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
-    </a>
-    <p style="text-align: center;">Beverages</p>
-  </li>
-  <li>
-    <a href="category.html">
-      <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/spicy%20pizza.jpg?raw=true" alt="Spicy Pizza"
-           style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
-    </a>
-    <p style="text-align: center;">Spicy Pizza</p>
-  </li>
-</ul>
-
-  </nav>
-
-  <main class="p-4">
-    <h2 class="text-xl font-semibold mb-4">Top Picks for You</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      
-      <div class="bg-white rounded-2xl shadow-lg p-4" id="veg">
-        <img src="9d5ece52-5760-4aa8-98e6-65b9b08e1b48_PIZ0179.jpg" alt="Peppy Paneer pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
-        <h3 class="text-lg font-bold" style="color: #0b648f">Peppy Paneer</h3>
-        <p class="text-sm text-gray-600">Juicy paneer, capsicum & red paprika.</p>
-        <p class="mt-2 font-semibold" style="color: crimson">Rs.259</p>
-        <button id="addToCartBtn1" onclick="addToCart('Peppy Paneer', 259, 'addToCartBtn1')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
-      </div>
-    
-      <div class="bg-white rounded-2xl shadow-lg p-4" id="veg">
-        <img src="baeb0175-ee81-4bbd-b8cb-7ec6f8ac6413_PIZ0172.jpg" alt="Margherita pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
-        <h3 class="text-lg font-bold" style="color: #3b9f9f">Margherita</h3>
-        <p class="text-sm text-gray-600">100% real mozzarella cheese.</p>
-        <p class="mt-2 font-semibold" style="color: crimson">Rs.109</p>
-        <button id="addToCartBtn2" onclick="addToCart('Margherita', 109, 'addToCartBtn2')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
-      </div>
-    
-      <div class="bg-white rounded-2xl shadow-lg p-4" id="veg">
-        <img src="1cc3b474-cc7b-435b-9da3-bac839a62b6c_PIZ0180.jpg" alt="Veggie Paradise pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
-        <h3 class="text-lg font-bold" style="color: #0b648f">Veggie Paradise</h3>
-        <p class="text-sm text-gray-600">Golden corn, olives, capsicum, paprika.</p>
-        <p class="mt-2 font-semibold" style="color: crimson">Rs.259</p>
-        <button id="addToCartBtn3" onclick="addToCart('Veggie Paradise', 259, 'addToCartBtn3')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
-      </div>
-      
-      <div class="bg-white rounded-2xl shadow-lg p-4" id="non-veg">
-        <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/aaf5d05f-59d3-4594-bb72-d55e3b43e2ea_FullsizeMargaritaCB.jpg?raw=true" alt="Cheese Burst pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
-        <h3 class="text-lg font-bold" style="color: #0b648f">Cheese Burst</h3>
-        <p class="text-sm text-gray-600">Melted cheese inside the crust, extra cheese on top.</p>
-        <p class="mt-2 font-semibold" style="color: crimson">Rs.349</p>
-        <button id="addToCartBtn4" onclick="addToCart('Cheese Burst', 349, 'addToCartBtn4')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
-      </div>
-      
-      <div class="bg-white rounded-2xl shadow-lg p-4" id="non-veg">
-        <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/7a766c16-e00a-48ba-89fe-73493cca5df0_PMPepperBBQChickenHome.jpg?raw=true" alt="BBQ Chicken pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
-        <h3 class="text-lg font-bold" style="color: #0b648f">BBQ Chicken</h3>
-        <p class="text-sm text-gray-600">Grilled chicken with smoky BBQ sauce.</p>
-        <p class="mt-2 font-semibold" style="color: crimson">Rs.399</p>
-        <button id="addToCartBtn5" onclick="addToCart('BBQ Chicken', 399, 'addToCartBtn5')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
-      </div>
-     
-      <div class="bg-white rounded-2xl shadow-lg p-4" id="non-veg">
-        <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/4c7882a7-bb21-433e-839e-1aa787471b4b_Pepperoni.jpg?raw=true" alt="Pepperoni pizza" class="rounded-xl mb-2 w-full h-40 object-cover" />
-        <h3 class="text-lg font-bold" style="color:#0b648f">Pepperoni</h3>
-        <p class="text-sm text-gray-600">Spicy pepperoni slices and cheese.</p>
-        <p class="mt-2 font-semibold" style="color: crimson">Rs.349</p>
-        <button id="addToCartBtn6" onclick="addToCart('Pepperoni', 349, 'addToCartBtn6')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-primary p-4 text-white sticky top-0 z-50 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold flex items-center">
+        <span class="mr-2">🍕</span> Domino's Pizza
+      </h1>
+      <div class="flex items-center space-x-4">
+        <div class="relative">
+          <a href="cart.html" class="text-white text-lg relative">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cartCounter" class="cart-counter">0</span>
+          </a>
+        </div>
+        <button id="openBtn" class="text-white text-lg bg-transparent border-none cursor-pointer">
+          <i class="fas fa-bars"></i> Menu
+        </button>    
       </div>
     </div>
+  </header>
+
+  <!-- Sidebar Navigation -->
+  <div id="mySidebar" class="sidebar">
+    <span class="closeBtn" id="closeBtn">&times;</span>
+    <a href="index.html"><i class="fas fa-home mr-2"></i>Home</a>
+    <a href="about.html"><i class="fas fa-info-circle mr-2"></i>About</a>
+    <a href="menu.html"><i class="fas fa-utensils mr-2"></i>Full Menu</a>
+    <a href="deals.html"><i class="fas fa-tag mr-2"></i>Deals</a>
+    <a href="contact.html"><i class="fas fa-phone-alt mr-2"></i>Contact</a>
+    <a href="login.html"><i class="fas fa-user mr-2"></i>Login</a>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto p-4">
+    <!-- Categories Section -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-4 text-primary">What are you craving for?</h2>
+      <div class="flex overflow-x-auto pb-4 space-x-6">
+        <!-- All your category items -->
+        <div class="flex flex-col items-center min-w-[100px]">
+          <a href="category.html" class="block">
+            <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/big%20pizza.jpg?raw=true" 
+                 alt="Big Big Pizza" class="category-img">
+          </a>
+          <p class="text-center mt-2 font-medium">Big Big Pizza</p>
+        </div>
+        <div class="flex flex-col items-center min-w-[100px]">
+          <a href="category.html" class="block">
+            <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/cheese%20burst%20top.jpeg?raw=true" 
+                 alt="Cheese Burst Pizza" class="category-img">
+          </a>
+          <p class="text-center mt-2 font-medium">Cheese Burst</p>
+        </div>
+        <div class="flex flex-col items-center min-w-[100px]">
+          <a href="category.html" class="block">
+            <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/veg%20pizza.jpg?raw=true" 
+                 alt="Veg Pizza" class="category-img">
+          </a>
+          <p class="text-center mt-2 font-medium">Vegetarian</p>
+        </div>
+        <div class="flex flex-col items-center min-w-[100px]">
+          <a href="category.html" class="block">
+            <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/cheese%20volcano.jpg?raw=true" 
+                 alt="Cheese Volcano" class="category-img">
+          </a>
+          <p class="text-center mt-2 font-medium">Cheese Volcano</p>
+        </div>
+        <div class="flex flex-col items-center min-w-[100px]">
+          <a href="category.html" class="block">
+            <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/pizza%20maina.jpg?raw=true" 
+                 alt="Pizza Mania" class="category-img">
+          </a>
+          <p class="text-center mt-2 font-medium">Pizza Mania</p>
+        </div>
+        <div class="flex flex-col items-center min-w-[100px]">
+          <a href="category.html" class="block">
+            <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/value%20combos.jpg?raw=true" 
+                 alt="Value Combos" class="category-img">
+          </a>
+          <p class="text-center mt-2 font-medium">Value Combos</p>
+        </div>
+        <div class="flex flex-col items-center min-w-[100px]">
+          <a href="category.html" class="block">
+            <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/garlic%20bread.jpg?raw=true" 
+                 alt="Garlic Breads" class="category-img">
+          </a>
+          <p class="text-center mt-2 font-medium">Garlic Breads</p>
+        </div>
+        <div class="flex flex-col items-center min-w-[100px]">
+          <a href="category.html" class="block">
+            <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/coca%20cola.jpeg?raw=true" 
+                 alt="Beverages" class="category-img">
+          </a>
+          <p class="text-center mt-2 font-medium">Beverages</p>
+        </div>
+        <div class="flex flex-col items-center min-w-[100px]">
+          <a href="category.html" class="block">
+            <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/spicy%20pizza.jpg?raw=true" 
+                 alt="Spicy Pizza" class="category-img">
+          </a>
+          <p class="text-center mt-2 font-medium">Spicy Pizza</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Pizzas -->
+    <section>
+      <h2 class="text-xl font-bold mb-6 text-primary">Top Picks for You</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Pizza Card 1 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
+          <img src="9d5ece52-5760-4aa8-98e6-65b9b08e1b48_PIZ0179.jpg" 
+               alt="Peppy Paneer pizza with toppings" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-bold text-primary">Peppy Paneer</h3>
+              <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Veg</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-1">Juicy paneer, capsicum & red paprika with spicy seasoning</p>
+            <div class="mt-4 flex justify-between items-center">
+              <p class="text-lg font-semibold text-accent">₹259</p>
+              <button onclick="addToCart('Peppy Paneer', 259, 'addToCartBtn1')" 
+                      id="addToCartBtn1" 
+                      class="btn-primary text-white px-4 py-2 rounded-full text-sm font-medium">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pizza Card 2 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
+          <img src="baeb0175-ee81-4bbd-b8cb-7ec6f8ac6413_PIZ0172.jpg" 
+               alt="Margherita pizza" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-bold text-primary">Margherita</h3>
+              <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Veg</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-1">Classic delight with 100% real mozzarella cheese</p>
+            <div class="mt-4 flex justify-between items-center">
+              <p class="text-lg font-semibold text-accent">₹109</p>
+              <button onclick="addToCart('Margherita', 109, 'addToCartBtn2')" 
+                      id="addToCartBtn2" 
+                      class="btn-primary text-white px-4 py-2 rounded-full text-sm font-medium">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pizza Card 3 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
+          <img src="1cc3b474-cc7b-435b-9da3-bac839a62b6c_PIZ0180.jpg" 
+               alt="Veggie Paradise pizza" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-bold text-primary">Veggie Paradise</h3>
+              <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Veg</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-1">Golden corn, black olives, capsicum, red paprika</p>
+            <div class="mt-4 flex justify-between items-center">
+              <p class="text-lg font-semibold text-accent">₹259</p>
+              <button onclick="addToCart('Veggie Paradise', 259, 'addToCartBtn3')" 
+                      id="addToCartBtn3" 
+                      class="btn-primary text-white px-4 py-2 rounded-full text-sm font-medium">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pizza Card 4 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
+          <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/aaf5d05f-59d3-4594-bb72-d55e3b43e2ea_FullsizeMargaritaCB.jpg?raw=true" 
+               alt="Cheese Burst pizza" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-bold text-primary">Cheese Burst</h3>
+              <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Non-Veg</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-1">Melted cheese inside the crust, extra cheese on top</p>
+            <div class="mt-4 flex justify-between items-center">
+              <p class="text-lg font-semibold text-accent">₹349</p>
+              <button onclick="addToCart('Cheese Burst', 349, 'addToCartBtn4')" 
+                      id="addToCartBtn4" 
+                      class="btn-primary text-white px-4 py-2 rounded-full text-sm font-medium">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pizza Card 5 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
+          <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/7a766c16-e00a-48ba-89fe-73493cca5df0_PMPepperBBQChickenHome.jpg?raw=true" 
+               alt="BBQ Chicken pizza" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-bold text-primary">BBQ Chicken</h3>
+              <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Non-Veg</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-1">Grilled chicken with smoky BBQ sauce and onions</p>
+            <div class="mt-4 flex justify-between items-center">
+              <p class="text-lg font-semibold text-accent">₹399</p>
+              <button onclick="addToCart('BBQ Chicken', 399, 'addToCartBtn5')" 
+                      id="addToCartBtn5" 
+                      class="btn-primary text-white px-4 py-2 rounded-full text-sm font-medium">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pizza Card 6 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
+          <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/4c7882a7-bb21-433e-839e-1aa787471b4b_Pepperoni.jpg?raw=true" 
+               alt="Pepperoni pizza" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-bold text-primary">Pepperoni</h3>
+              <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Non-Veg</span>
+            </div>
+            <p class="text-sm text-gray-600 mt-1">Spicy pepperoni slices with extra cheese</p>
+            <div class="mt-4 flex justify-between items-center">
+              <p class="text-lg font-semibold text-accent">₹349</p>
+              <button onclick="addToCart('Pepperoni', 349, 'addToCartBtn6')" 
+                      id="addToCartBtn6" 
+                      class="btn-primary text-white px-4 py-2 rounded-full text-sm font-medium">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-6">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-bold mb-4">Domino's Pizza</h3>
+          <p class="text-sm">Delivering happiness since 1960. Order your favorite pizza now!</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-gray-300">About Us</a></li>
+            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+            <li><a href="#" class="hover:text-gray-300">Careers</a></li>
+            <li><a href="#" class="hover:text-gray-300">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+          <div class="flex space-x-4">
+            <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-youtube"></i></a>
+          </div>
+          <p class="mt-4 text-sm">Call us: 1800-123-4567</p>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+        <p>&copy; 2023 Domino's Pizza Clone. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    function addToCart(pizzaName, price, buttonId) {
+    // Initialize cart counter
+    function updateCartCounter() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cartCounter').textContent = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+    }
+
+    // Add to cart function with quantity tracking
+    function addToCart(itemName, itemPrice, buttonId) {
       const button = document.getElementById(buttonId);
-      button.innerHTML = 'Adding...';
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
       button.disabled = true;
 
-      setTimeout(function() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push({ name: pizzaName, price: price });
+      setTimeout(() => {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Check if item already exists in cart
+        const existingItem = cart.find(item => item.name === itemName);
+        
+        if (existingItem) {
+          existingItem.quantity = (existingItem.quantity || 1) + 1;
+        } else {
+          cart.push({ 
+            name: itemName, 
+            price: itemPrice,
+            quantity: 1,
+            image: document.querySelector(`#${buttonId}`).closest('.pizza-card').querySelector('img').src
+          });
+        }
+
         localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCounter();
 
-        button.innerHTML = 'Added!';
-        button.classList.remove('bg-red-600');
-        button.classList.add('bg-green-600');
+        button.innerHTML = '<i class="fas fa-check"></i> Added!';
+        button.classList.remove('btn-primary');
+        button.classList.add('btn-success');
 
-        setTimeout(function() {
-          window.location.href = "cart.html";
-        }, 1000);
-      }, 1000);
+        setTimeout(() => {
+          // Reset button state after 1.5 seconds
+          button.innerHTML = 'Add to Cart';
+          button.classList.remove('btn-success');
+          button.classList.add('btn-primary');
+          button.disabled = false;
+        }, 1500);
+      }, 800);
     }
+
+    // Sidebar functionality
     const openBtn = document.getElementById('openBtn');
     const closeBtn = document.getElementById('closeBtn');
     const sidebar = document.getElementById('mySidebar');
 
     openBtn.addEventListener('click', () => {
-      sidebar.style.width = '250px';
+      sidebar.style.width = '280px';
+      document.body.style.overflow = 'hidden';
     });
 
     closeBtn.addEventListener('click', () => {
       sidebar.style.width = '0';
+      document.body.style.overflow = 'auto';
     });
+
+    // Close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+      if (sidebar.style.width === '280px' && !sidebar.contains(e.target) && e.target !== openBtn) {
+        sidebar.style.width = '0';
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Initialize cart counter on page load
+    document.addEventListener('DOMContentLoaded', updateCartCounter);
   </script>
 </body>
 </html>
