@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <meta charset="UTF-8">
   <title>Domino's Value Combos</title>
   <style>
@@ -130,26 +132,28 @@
     <h2>Value Combos</h2>
 
     <div class="pizza-card" data-type="veg" data-price="399">
-      <img src="https://www.dominos.co.in/files/items/Combo-Veg.jpg" alt="Veg Combo">
+      <img src="combo veg.jpg" alt="Veg Combo" class="rounded-xl mb-2 w-full h-40 object-cover">
       <div class="pizza-info">
         <h3>Veg Combo Delight</h3>
         <p>Medium Veg Pizza + Garlic Bread + Pepsi</p>
         <div class="price">₹399</div>
-        <button class="add-to-cart-btn" onclick="addToCart('Veg Combo Delight', 399)">Add to Cart</button>
+        <button id="addToCartBtn6" onclick="addToCart('Veg Combo', 399, 'addToCartBtn6')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
       </div>
-    </div>
+      </div>
+    
 
     <div class="pizza-card" data-type="nonveg" data-price="499">
-      <img src="https://www.dominos.co.in/files/items/Combo-NonVeg.jpg" alt="Non-Veg Combo">
+      <img src="Gemini_Generated_Image_2t6e442t6e442t6e.jpg" alt="Non-Veg Combo" class="rounded-xl mb-2 w-full h-40 object-cover">
       <div class="pizza-info">
         <h3>Non-Veg Combo Feast</h3>
         <p>Medium Chicken Pizza + Garlic Bread + Pepsi</p>
         <div class="price">₹499</div>
-        <button class="add-to-cart-btn" onclick="addToCart('Non-Veg Combo Feast', 499)">Add to Cart</button>
+        <button id="addToCartBtn6" onclick="addToCart('Non-Veg Combo', 499, 'addToCartBtn6')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+      </div>
       </div>
     </div>
 
-  </div>
+  
 
   <script>
     const vegBtn = document.getElementById('vegBtn');
@@ -182,11 +186,25 @@
       sortAsc = !sortAsc;
     });
 
-    function addToCart(name, price) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push({ name, price });
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${name} added to cart!`);
+    
+    function addToCart(pizzaName, price, buttonId) {
+      const button = document.getElementById(buttonId);
+      button.innerHTML = 'Adding...';
+      button.disabled = true;
+
+      setTimeout(function() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push({ name: pizzaName, price: price });
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        button.innerHTML = 'Added!';
+        button.classList.remove('bg-red-600');
+        button.classList.add('bg-green-600');
+
+        setTimeout(function() {
+          window.location.href = "cart.html";
+        }, 1000);
+      }, 1000);
     }
   </script>
 
