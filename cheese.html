@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <meta charset="UTF-8">
   <title>Cheese Volcano</title>
   <style>
@@ -131,16 +133,53 @@
     <h2>Cheese Volcano</h2>
 
     <div class="pizza-card" data-type="veg" data-price="379">
-      <img src="https://www.dominos.co.in/files/items/cheese_volcano.jpg" alt="Cheese Volcano Pizza">
+      <img src="Gemini_Generated_Image_l0iiael0iiael0ii.jpg" alt="Cheese Volcano Pizza" class="rounded-xl mb-2 w-full h-40 object-cover">
       <div class="pizza-info">
         <h3>Cheese Volcano</h3>
         <p>Overflowing cheese bursting out of a volcano-shaped crust</p>
         <div class="price">₹379</div>
-        <button class="add-to-cart-btn" onclick="addToCart('Cheese Volcano', 379)">Add to Cart</button>
+        <button id="addToCartBtn6" onclick="addToCart('Cheese Volcano', 309, 'addToCartBtn6')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
       </div>
     </div>
+    <div class="pizza-card" data-type="veg" data-price="309">
+      <img src="cv pp.jpg" alt="Cheese Volcano Pizza" class="rounded-xl mb-2 w-full h-40 object-cover">
+      <div class="pizza-info">
+        <h3>Cheese Volcano Peppy Paneer</h3>
+        <p>Overflowing cheese bursting out of a volcano-shaped crust with fabulous paneer</p>
+        <div class="price">₹309</div>
+        <button id="addToCartBtn6" onclick="addToCart('Cheese Volcano Peppy Paneer', 309, 'addToCartBtn6')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+      </div>
+    </div>
+    <div class="pizza-card" data-type="veg" data-price="309">
+      <img src="corn cheese.jpg" alt="Cheese Volcano Pizza" class="rounded-xl mb-2 w-full h-40 object-cover">
+      <div class="pizza-info">
+        <h3>Cheese Volcano Corn Cheese</h3>
+        <p>Overflowing cheese bursting out of a volcano-shaped crust</p>
+        <div class="price">₹309</div>
+        <button id="addToCartBtn6" onclick="addToCart('Cheese Volcano Corn Cheese', 309, 'addToCartBtn6')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+      </div>
+    </div>
+    <div class="pizza-card" data-type="nonveg" data-price="379">
+      <img src="cv bbq.jpg" alt="Cheese Volcano Pizza" class="rounded-xl mb-2 w-full h-40 object-cover">
+      <div class="pizza-info">
+        <h3>Cheese Volcano BBQ chicken</h3>
+        <p>Overflowing cheese bursting out of a volcano-shaped crust with juicy corn cheese</p>
+        <div class="price">₹379</div>
+        <button id="addToCartBtn6" onclick="addToCart('Cheese Volcano BBQ Chicken', 379, 'addToCartBtn6')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+      </div>
+    </div>
+    <div class="pizza-card" data-type="nonveg" data-price="379">
+      <img src="cheese volcano.jpg" alt="Cheese Volcano Pizza" class="rounded-xl mb-2 w-full h-40 object-cover">
+      <div class="pizza-info">
+        <h3>Cheese Volcano Double Chicken</h3>
+        <p>Overflowing cheese bursting out of a volcano-shaped crust</p>
+        <div class="price">₹379</div>
+        <button id="addToCartBtn6" onclick="addToCart('Cheese Volcano Double Chicken', 379, 'addToCartBtn6')" class="mt-3 bg-red-600 hover:bg-[#1182bf] text-white px-6 py-3 rounded-full shadow-md border border-[#0f6491] transition-all duration-300">Add to Cart</button>
+      </div>
+      </div>
 
-  </div>
+    </div>
+
 
   <script>
     const vegBtn = document.getElementById('vegBtn');
@@ -172,11 +211,24 @@
       sortAsc = !sortAsc;
     });
 
-    function addToCart(name, price) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push({ name, price });
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${name} added to cart!`);
+    function addToCart(pizzaName, price, buttonId) {
+      const button = document.getElementById(buttonId);
+      button.innerHTML = 'Adding...';
+      button.disabled = true;
+
+      setTimeout(function() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push({ name: pizzaName, price: price });
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        button.innerHTML = 'Added!';
+        button.classList.remove('bg-red-600');
+        button.classList.add('bg-green-600');
+
+        setTimeout(function() {
+          window.location.href = "cart.html";
+        }, 1000);
+      }, 1000);
     }
   </script>
 
