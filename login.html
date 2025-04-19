@@ -148,19 +148,17 @@
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Show loading state
+    
       document.getElementById('loginText').classList.add('hidden');
       document.getElementById('loginSpinner').classList.remove('hidden');
       
-      // Simulate login process
+     
       setTimeout(function() {
-        // In a real app, you would validate credentials here
-        // For demo purposes, we'll just redirect
+        
         window.location.href = 'index.html';
       }, 1500);
     });
 
-    // Simple form validation
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     
