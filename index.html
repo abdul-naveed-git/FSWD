@@ -94,7 +94,7 @@
       justify-content: center;
     }
     
-    /* Custom color scheme */
+ 
     .bg-primary {
       background-color: #0b648f;
     }
@@ -116,7 +116,7 @@
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-  <!-- Header -->
+
   <header class="bg-primary p-4 text-white sticky top-0 z-50 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold flex items-center">
@@ -136,7 +136,6 @@
     </div>
   </header>
 
-  <!-- Sidebar Navigation -->
   <div id="mySidebar" class="sidebar">
     <span class="closeBtn" id="closeBtn">&times;</span>
     <a href="index.html"><i class="fas fa-home mr-2"></i>Home</a>
@@ -147,13 +146,13 @@
     <a href="login.html"><i class="fas fa-user mr-2"></i>Login</a>
   </div>
 
-  <!-- Main Content -->
+ 
   <main class="flex-grow container mx-auto p-4">
-    <!-- Categories Section -->
+   
     <section class="mb-8">
       <h2 class="text-xl font-bold mb-4 text-primary">What are you craving for?</h2>
       <div class="flex overflow-x-auto pb-4 space-x-6">
-        <!-- All your category items -->
+        
         <div class="flex flex-col items-center min-w-[100px]">
           <a href="category.html" class="block">
             <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/big%20pizza.jpg?raw=true" 
@@ -220,11 +219,11 @@
       </div>
     </section>
 
-    <!-- Featured Pizzas -->
+   
     <section>
       <h2 class="text-xl font-bold mb-6 text-primary">Top Picks for You</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Pizza Card 1 -->
+        
         <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
           <img src="9d5ece52-5760-4aa8-98e6-65b9b08e1b48_PIZ0179.jpg" 
                alt="Peppy Paneer pizza with toppings" class="w-full h-48 object-cover">
@@ -245,7 +244,6 @@
           </div>
         </div>
 
-        <!-- Pizza Card 2 -->
         <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
           <img src="baeb0175-ee81-4bbd-b8cb-7ec6f8ac6413_PIZ0172.jpg" 
                alt="Margherita pizza" class="w-full h-48 object-cover">
@@ -266,7 +264,6 @@
           </div>
         </div>
 
-        <!-- Pizza Card 3 -->
         <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
           <img src="1cc3b474-cc7b-435b-9da3-bac839a62b6c_PIZ0180.jpg" 
                alt="Veggie Paradise pizza" class="w-full h-48 object-cover">
@@ -287,7 +284,7 @@
           </div>
         </div>
 
-        <!-- Pizza Card 4 -->
+        
         <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
           <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/aaf5d05f-59d3-4594-bb72-d55e3b43e2ea_FullsizeMargaritaCB.jpg?raw=true" 
                alt="Cheese Burst pizza" class="w-full h-48 object-cover">
@@ -308,7 +305,7 @@
           </div>
         </div>
 
-        <!-- Pizza Card 5 -->
+        
         <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
           <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/7a766c16-e00a-48ba-89fe-73493cca5df0_PMPepperBBQChickenHome.jpg?raw=true" 
                alt="BBQ Chicken pizza" class="w-full h-48 object-cover">
@@ -329,7 +326,7 @@
           </div>
         </div>
 
-        <!-- Pizza Card 6 -->
+       
         <div class="bg-white rounded-xl shadow-md overflow-hidden pizza-card">
           <img src="https://github.com/abdul-naveed-git/FSWD/blob/main/4c7882a7-bb21-433e-839e-1aa787471b4b_Pepperoni.jpg?raw=true" 
                alt="Pepperoni pizza" class="w-full h-48 object-cover">
@@ -353,7 +350,7 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  
   <footer class="bg-primary text-white py-6">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -388,13 +385,13 @@
   </footer>
 
   <script>
-    // Initialize cart counter
+  
     function updateCartCounter() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       document.getElementById('cartCounter').textContent = cart.reduce((total, item) => total + (item.quantity || 1), 0);
     }
 
-    // Add to cart function with quantity tracking
+
     function addToCart(itemName, itemPrice, buttonId) {
       const button = document.getElementById(buttonId);
       button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
@@ -403,7 +400,7 @@
       setTimeout(() => {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         
-        // Check if item already exists in cart
+       
         const existingItem = cart.find(item => item.name === itemName);
         
         if (existingItem) {
@@ -425,7 +422,7 @@
         button.classList.add('btn-success');
 
         setTimeout(() => {
-          // Reset button state after 1.5 seconds
+          
           button.innerHTML = 'Add to Cart';
           button.classList.remove('btn-success');
           button.classList.add('btn-primary');
@@ -434,7 +431,7 @@
       }, 800);
     }
 
-    // Sidebar functionality
+   
     const openBtn = document.getElementById('openBtn');
     const closeBtn = document.getElementById('closeBtn');
     const sidebar = document.getElementById('mySidebar');
@@ -449,7 +446,7 @@
       document.body.style.overflow = 'auto';
     });
 
-    // Close sidebar when clicking outside
+   
     document.addEventListener('click', (e) => {
       if (sidebar.style.width === '280px' && !sidebar.contains(e.target) && e.target !== openBtn) {
         sidebar.style.width = '0';
@@ -457,7 +454,7 @@
       }
     });
 
-    // Initialize cart counter on page load
+  
     document.addEventListener('DOMContentLoaded', updateCartCounter);
   </script>
 </body>
