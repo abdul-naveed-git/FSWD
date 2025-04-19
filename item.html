@@ -21,7 +21,7 @@
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
-  <!-- Header with back button and cart -->
+  
   <header class="bg-red-600 p-4 text-white sticky top-0 z-50 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
       <a href="javascript:history.back()" class="text-white text-lg">
@@ -38,7 +38,7 @@
   </header>
 
   <main class="container mx-auto p-4">
-    <!-- Item Details Section -->
+   
     <section class="bg-white rounded-xl shadow-md overflow-hidden mb-6">
       <img id="itemImage" src="" alt="Item Image" class="w-full h-64 object-cover">
       <div class="p-4">
@@ -56,15 +56,15 @@
       </div>
     </section>
 
-    <!-- Toppings Section -->
+   
     <section class="bg-white rounded-xl shadow-md p-4 mb-6">
       <h2 class="text-lg font-bold text-gray-800 mb-4">Customize Your Pizza</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-        <!-- Topping items will be added dynamically -->
+       
       </div>
     </section>
 
-    <!-- Recommended Items -->
+   
     <section class="bg-white rounded-xl shadow-md p-4">
       <h2 class="text-lg font-bold text-gray-800 mb-4">You May Also Like</h2>
       <div class="grid grid-cols-2 gap-4">
@@ -83,7 +83,7 @@
   </main>
 
   <script>
-    // Get URL parameters
+   
     function getUrlParams() {
       const params = new URLSearchParams(window.location.search);
       return {
@@ -95,13 +95,13 @@
       };
     }
 
-    // Update cart count
+   
     function updateCartCount() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       document.getElementById('cartCount').textContent = cart.reduce((total, item) => total + (item.quantity || 1), 0);
     }
 
-    // Available toppings
+    
     const toppings = {
       veg: [
         { name: 'Extra Cheese', price: 50 },
@@ -126,18 +126,18 @@
       ]
     };
 
-    // Initialize the page
+   
     document.addEventListener('DOMContentLoaded', () => {
       const params = getUrlParams();
       updateCartCount();
 
-      // Set item details
+      
       document.getElementById('itemName').textContent = params.name;
       document.getElementById('itemPrice').textContent = `₹${params.price}`;
       document.getElementById('itemDesc').textContent = params.desc;
       document.getElementById('itemImage').src = params.img;
 
-      // Set item type badge
+      
       const typeBadge = document.getElementById('itemType');
       if (params.type === 'veg') {
         typeBadge.textContent = 'VEG';
@@ -150,7 +150,7 @@
         typeBadge.classList.add('bg-blue-100', 'text-blue-800');
       }
 
-      // Add toppings based on item type
+    
       const toppingsContainer = document.querySelector('.grid.grid-cols-2.md\\:grid-cols-3.gap-3');
       const itemToppings = toppings[params.type] || toppings.default;
 
@@ -168,7 +168,7 @@
         `;
         toppingsContainer.appendChild(toppingElement);
 
-        // Add click handler for toppings
+        
         toppingElement.addEventListener('click', (e) => {
           if (e.target.tagName !== 'INPUT') {
             const checkbox = toppingElement.querySelector('input');
@@ -178,13 +178,13 @@
         });
       });
 
-      // Add to cart functionality
+     
       document.getElementById('addToCartBtn').addEventListener('click', () => {
         const button = document.getElementById('addToCartBtn');
         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
         button.disabled = true;
 
-        // Get selected toppings
+        
         const selectedToppings = [];
         document.querySelectorAll('.topping-item input:checked').forEach(checkbox => {
           const toppingName = checkbox.id.replace('topping-', '').replace('-', ' ');
@@ -192,12 +192,12 @@
           selectedToppings.push({ name: toppingName, price: toppingPrice });
         });
 
-        // Calculate total price
+        
         const basePrice = parseInt(params.price);
         const toppingsPrice = selectedToppings.reduce((sum, topping) => sum + topping.price, 0);
         const totalPrice = basePrice + toppingsPrice;
 
-        // Prepare item data
+        
         const itemData = {
           name: params.name,
           basePrice: basePrice,
@@ -208,7 +208,7 @@
           quantity: 1
         };
 
-        // Add to cart
+        
         setTimeout(() => {
           let cart = JSON.parse(localStorage.getItem('cart')) || [];
           cart.push(itemData);
