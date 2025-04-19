@@ -25,7 +25,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-  <!-- Header with back button and cart -->
+  
   <header class="bg-red-600 p-4 text-white sticky top-0 z-50 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
       <a href="index.html" class="text-white text-lg">
@@ -41,7 +41,7 @@
     </div>
   </header>
 
-  <!-- Filter + Search -->
+ 
   <section class="bg-white p-4 sticky top-16 z-40 shadow-sm">
     <div class="container mx-auto">
       <div class="flex flex-col md:flex-row gap-4">
@@ -239,7 +239,7 @@
   </main>
 
   <script>
-    // Cart functionality
+    
     function addToCart(itemName, price, buttonId, imageUrl) {
       const button = document.getElementById(buttonId);
       button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
@@ -248,7 +248,7 @@
       setTimeout(() => {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         
-        // Check if item already exists in cart
+        
         const existingItem = cart.find(item => item.name === itemName);
         
         if (existingItem) {
@@ -283,12 +283,12 @@
       document.getElementById('cartCount').textContent = cart.reduce((total, item) => total + (item.quantity || 1), 0);
     }
 
-    // Filter functionality
+   
     function filterPizzas(type) {
       const cards = document.querySelectorAll('.pizza-card');
       const buttons = document.querySelectorAll('.filter-btn');
 
-      // Update active button
+      
       buttons.forEach(btn => {
         btn.classList.remove('active-filter');
         if (btn.textContent.trim().toLowerCase() === type.toLowerCase() || 
@@ -297,7 +297,7 @@
         }
       });
 
-      // Filter cards
+      
       cards.forEach(card => {
         if (type === 'all') {
           card.style.display = 'block';
@@ -308,13 +308,12 @@
       });
     }
 
-    // Search functionality
     function searchPizzas() {
       const searchTerm = document.getElementById('searchInput').value.toLowerCase();
       const cards = document.querySelectorAll('.pizza-card');
 
       cards.forEach(card => {
-        if (card.style.display !== 'none') { // Only search visible cards
+        if (card.style.display !== 'none') { 
           const title = card.querySelector('h3').textContent.toLowerCase();
           if (title.includes(searchTerm)) {
             card.style.display = 'block';
@@ -325,7 +324,7 @@
       });
     }
 
-    // Initialize
+   
     document.addEventListener('DOMContentLoaded', () => {
       updateCartCount();
       filterPizzas('all');
